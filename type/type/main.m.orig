@@ -17,20 +17,25 @@
 + (void)initialize;
 - (id)init;
 - (void)whoAreYou;
-- (void)sayHello;
-- (int)value;
 @end
 
 @implementation A
-
 + (void)initialize
 {
+<<<<<<< HEAD
     printf("Init A\n");
+=======
+    printf("this is A class initializer\n");
+>>>>>>> origin/master
 }
 
 - (id)init
 {
+<<<<<<< HEAD
     printf("this is instance init of A\n");
+=======
+    printf("this is A init\n");
+>>>>>>> origin/master
     self = [super init];
     if (self != nil) {
         a = 1;
@@ -38,23 +43,16 @@
     return self;
 }
 
-- (void)sayHello
-{
-    printf("Hello of A\n");
-}
 
 - (void)whoAreYou
 {
     printf("I am A\n");
 }
-
-- (int)value
-{
-    return a;
-}
 @end
 
+
 @interface B : A
+<<<<<<< HEAD
 {
     int b;
 }
@@ -62,6 +60,9 @@
 + (void)setMessage:(const char*)msg;
 - (id)init;
 - (void)whoAreYou;
+=======
++ (void)initialize;
+>>>>>>> origin/master
 - (void)sayHello;
 @end
 
@@ -70,6 +71,7 @@ static const char *myMessage = "Hello";
 @implementation B
 + (void)initialize
 {
+<<<<<<< HEAD
     printf("Init B\n");
 }
 + (void)setMessage:(const char *)msg
@@ -90,6 +92,10 @@ static const char *myMessage = "Hello";
     printf("I am B\n");
 }
 
+=======
+    printf("this is B class initializer\n");
+}
+>>>>>>> origin/master
 - (void)sayHello
 {
     printf("%s\n", myMessage);
