@@ -23,11 +23,12 @@
 
 + (void)initialize
 {
-    printf("this is A initializer\n");
+    printf("this is A class initializer\n");
 }
 
 - (id)init
 {
+    printf("this is A init\n");
     self = [super init];
     if (self != nil)
         a = 0;
@@ -46,11 +47,15 @@
 @end
 
 @interface B : A
++ (void)initialize;
 - (void)sayHello;
 @end
 
 @implementation B
-
++ (void)initialize
+{
+    printf("this is B class initializer\n");
+}
 - (void)sayHello
 {
     a = 1;
