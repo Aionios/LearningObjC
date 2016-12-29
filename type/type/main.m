@@ -13,62 +13,122 @@
 {
     int a;
 }
+// class initializer only got executed once.
 + (void)initialize;
 - (id)init;
-- (void)sayHello;
-- (int)value;
+- (void)whoAreYou;
 @end
 
 @implementation A
-
 + (void)initialize
 {
-    printf("this is A initializer\n");
+    printf("Init A\n");
 }
 
 - (id)init
 {
+    printf("this is instance init of A\n");
     self = [super init];
-    if (self != nil)
-        a = 0;
+    if (self != nil) {
+        a = 1;
+    }
     return self;
 }
 
-- (void)sayHello
-{
-    printf("Hello of A\n");
-}
 
-- (int)value
+- (void)whoAreYou
 {
-    return a;
+    printf("I am A\n");
 }
 @end
 
+
 @interface B : A
+{
+    int b;
+}
++ (void)initialize;
++ (void)setMessage:(const char*)msg;
+- (id)init;
+- (void)whoAreYou;
 - (void)sayHello;
 @end
 
+static const char *myMessage = "Hello";
+
 @implementation B
++ (void)initialize
+{
+    printf("Init B\n");
+}
++ (void)setMessage:(const char *)msg
+{
+    myMessage = msg;
+}
+- (id)init
+{
+    printf("this is instance init of B\n");
+    self = [super init];
+    if (self != nil) {
+        b = 2;
+    }
+    return self;
+}
+- (void)whoAreYou
+{
+    printf("I am B\n");
+}
 
 - (void)sayHello
 {
-    a = 1;
-    printf("Hello of B\n");
+    printf("%s\n", myMessage);
+}
+
+@end
+
+@interface Fraction : NSObject
+@property int numerator, denominator;
+
+-(void) print;
+-(double) convertToNum;
+
+@end
+
+@implementation Fraction
+
+@synthesize numerator, denominator;
+
+-(void) print
+{
+    NSLog(@"%i/%i", numerator, denominator);
+}
+
+-(double) convertToNum
+{
+    if (denominator != 0)
+        return (double)numerator/denominator;
+    else
+        return NAN;
 }
 
 @end
 
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        id a, b;
-        A *aa, *ab;
-        a = [[A alloc] init];
-        b = [[B alloc] init];
-        printf("------------------\n");
-        aa = [[A alloc] init];
-        ab = [[B alloc] init];
-        NSLog(@"Hello, World!");
-    }
+    
+    A *b;
+    b = [[B alloc] init];
+    A *bb;
+    bb = [[B alloc] init];
+    BOOL is = [b isKindOfClass:[B class]];
+    printf("%s\n", is ? "Yes" : "No");
+    [(B*)b sayHello];
+    [B setMessage:"This is an apple"];
+    [(B*)b sayHello];
+    
+    Fraction *frac = [[Fraction alloc] init];
+    frac.numerator = 1;
+    [frac setDenominator:3];
+    [frac print];
+    
     return 0;
 }
