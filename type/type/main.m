@@ -11,6 +11,7 @@
 
 @interface A : NSObject
 {
+    @protected
     int a;
 }
 // class initializer only got executed once.
@@ -92,7 +93,7 @@ static const char *myMessage = "Hello";
 
 - (void)sayHello
 {
-    printf("%s\n", myMessage);
+    printf("%s %i\n", myMessage, a);
 }
 
 @end
@@ -128,6 +129,7 @@ int main(int argc, const char * argv[]) {
     
     A *b;
     b = [[B alloc] init];
+    
     A *bb;
     bb = [[B alloc] init];
     BOOL is = [b isKindOfClass:[B class]];

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Foundation/Foundation.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Category/Category.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Binding/Binding.xcodeproj">
    </FileRef>
    <FileRef
