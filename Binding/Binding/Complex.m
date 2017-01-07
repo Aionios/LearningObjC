@@ -26,7 +26,7 @@
 -(Complex*) add:(Complex *)f
 {
     Complex *result = [[Complex alloc] init];
-    result.real = real + f.real
+    result.real = real + f.real;
     result.imaginary = imaginary + f.imaginary;
     return result;
 }

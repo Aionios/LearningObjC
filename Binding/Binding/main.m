@@ -6,12 +6,18 @@
 //  Copyright © 2016 HT Chang. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Complex.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        NSLog(@"Hello, World!");
+        id dataValue;
+        Complex *c = [[Complex alloc] init];
+        [c setReal:10.0 andImaginary:2.5];
+        dataValue = c;
+        [dataValue print];
+        
+        
     }
     return 0;
 }
