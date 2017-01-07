@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NSSet (Printing)
+-(void) print;
+@end
+
+@implementation NSSet (Printing)
+
+-(void)print
+{
+    printf("{ ");
+    for (NSNumber *element in self)
+        printf("%li ", (long)[element integerValue]);
+    printf(" }\n");
+}
+
+@end
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
@@ -40,6 +56,58 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"Q2: %@", q2);
         NSLog(@"Q3: %@", q3);
+        
+        NSMutableDictionary *calendar = [NSMutableDictionary dictionary];
+        NSDictionary *ncalendar = @{@1:@"January", @2:@"Feburary", @3:@"March"};
+        [calendar setObject:@"October" forKey:@10];
+        [calendar setObject:@"November" forKey:@11];
+        [calendar setObject:@"December" forKey:@12];
+        calendar[@4] = @"April";
+        calendar[@5] = @"May";
+        calendar[@6] = @"June";
+        calendar[@7] = @"July";
+        calendar[@8] = @"August";
+        calendar[@9] = @"September";
+        
+        for (int i = 1; i <= 3; i++)
+            NSLog(@"Month: %@", ncalendar[@(i)]);
+        NSNumber *itr;
+        for (int i = 4; i <= 6; i++) {
+            itr = [NSNumber numberWithInt:i];
+            NSLog(@"Month: %@", [calendar objectForKey:itr]);
+        }
+        
+        for (NSNumber *key in calendar) {
+            if ([key intValue] > 6)
+                NSLog(@"Month: %@", calendar[key]);
+        }
+        
+        NSMutableSet *set1 = [NSMutableSet setWithObjects:@1, @3, @5, @10, nil];
+        NSSet *set2 = [NSSet setWithObjects:@-5, @100, @3, @5, nil];
+        NSSet *set3 = [NSSet setWithObjects:@12, @200, @3, nil];
+        
+        NSLog(@"set1: ");
+        [set1 print];
+        NSLog(@"set2: ");
+        [set2 print];
+        
+        NSLog([set1 isEqual:set2] ? @"set1 = set2" : @"set1 != set2");
+        NSLog([set1 containsObject:@10] ?
+              @"set1 has 10" : @"set1 don't have 10");
+        NSLog([set2 containsObject:@10] ?
+              @"set2 has 10" : @"set2 don't have 10");
+        
+        [set1 addObject:@4];
+        [set1 removeObject:@10];
+        [set1 print];
+        
+        NSLog(@"set1 intersect set2: ");
+        [set1 intersectSet: set2];
+        [set1 print];
+        
+        NSLog(@"set1 union set3");
+        [set1 unionSet:set3];
+        [set1 print];
         
     }
     return 0;
