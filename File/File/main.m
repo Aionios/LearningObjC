@@ -14,6 +14,8 @@ int main(int argc, const char * argv[]) {
         NSFileManager *fm;
         NSDictionary *attr;
         
+        NSData *fileData;
+        
         fm = [NSFileManager defaultManager];
         
         if ([fm fileExistsAtPath:fName] == NO) {
@@ -59,6 +61,22 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%@", [NSString stringWithContentsOfFile:@"/Users/aion/newfile2"
                                                encoding:NSUTF8StringEncoding
                                                   error:NULL]);
+        
+        fileData = [fm contentsAtPath:@"/Users/aion/newfile2"];
+        if (fileData == nil) {
+            NSLog(@"File read failed");
+            return 7;
+        }
+        
+        if ([fm createFileAtPath:@"/Users/aion/newfile3" contents:fileData
+                      attributes:nil] == NO) {
+            NSLog(@"Failed to create the copy");
+            return 8;
+            
+        }
+        
+        NSLog(@"File copy was successful");
+        
     }
     return 0;
 }
