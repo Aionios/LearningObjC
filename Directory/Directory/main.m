@@ -13,6 +13,8 @@ int main(int argc, const char * argv[]) {
         NSString *home = @"/Users/aion";
         NSString *direName = @"testdir";
         NSString *path;
+        NSDirectoryEnumerator *dirEnum;
+        NSArray *dirArray;
         
         NSFileManager *fm;
         
@@ -42,9 +44,23 @@ int main(int argc, const char * argv[]) {
             return 4;
         }
         
-        path = [fm currentDirectoryPath];
+        path = @"/Users/aion/Downloads";
         NSLog(@"Now in directory %@", path);
         NSLog(@"All operations were successful");
+        
+        dirEnum = [fm enumeratorAtPath:path];
+        NSLog(@"Contents of %@", path);
+        
+        while ((path = [dirEnum nextObject]) != nil)
+            NSLog(@"%@", path);
+        path = [fm currentDirectoryPath];
+        dirArray = [fm contentsOfDirectoryAtPath:path
+                                           error:NULL];
+        
+        NSLog(@"Contents using contentsOfDirectoryAtPath");
+        for (path in dirArray)
+            NSLog(@"%@", path);
+        
     }
     return 0;
 }
