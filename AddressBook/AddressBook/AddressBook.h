@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "AddressCard.h"
 
-@interface AddressBook : NSObject
+@interface AddressBook : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *bookName;
 @property (nonatomic, strong) NSMutableArray *book;

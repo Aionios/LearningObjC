@@ -10,7 +10,7 @@
 #define _AddressCard_h
 #import <Foundation/Foundation.h>
 
-@interface AddressCard : NSObject
+@interface AddressCard : NSObject <NSCoding>
 
 -(void) setName: (NSString*)theName;
 -(void) setEmail: (NSString*)theEmail;

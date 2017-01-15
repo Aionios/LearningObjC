@@ -10,6 +10,7 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
         NSString *aName = @"Julia Chang";
         NSString *aEmail = @"JChang@gmails.com";
         NSString *bName = @"Aion Chang";
@@ -58,6 +59,17 @@ int main(int argc, const char * argv[]) {
         [myBook removeCard:myCard];
         
         [myBook list];
+        
+        if ([NSKeyedArchiver archiveRootObject:myBook
+                                        toFile:@"/Users/aion/myAddressBook.arch"]
+            == NO) {
+            NSLog(@"archiving failed!");
+        }
+        
+        AddressBook *readBack = [NSKeyedUnarchiver
+                                 unarchiveObjectWithFile:@"/Users/aion/myAddressBook.arch"];
+        NSLog(@"Read back archive: ");
+        [readBack list];
     }
     return 0;
 }

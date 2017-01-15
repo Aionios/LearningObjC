@@ -74,4 +74,17 @@
      }];
     NSLog (@"==================================================");
 }
+
+-(void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:bookName forKey:@"AddressBookBookName"];
+    [aCoder encodeObject:book forKey:@"AddressBookBook"];
+}
+
+-(id) initWithCoder:(NSCoder *)aDecoder
+{
+    bookName = [aDecoder decodeObjectForKey:@"AddressBookBookName"];
+    book = [aDecoder decodeObjectForKey:@"AddressBookBook"];
+    return self;
+}
 @end

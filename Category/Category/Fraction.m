@@ -47,4 +47,11 @@
     denominator /= u;
 }
 
+
+-(id) copyWithZone:(NSZone *)zone
+{
+    Fraction *copyFract = [[Fraction allocWithZone:zone] init];
+    [copyFract setTo:numerator over:denominator];
+    return copyFract;
+}
 @end

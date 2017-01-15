@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Fraction: NSObject
+@interface Fraction: NSObject <NSCopying>
 @property int numerator, denominator;
 -(void) print;
 -(double) convertToNum;
@@ -19,5 +19,6 @@
 -(void) reduce;
 
 @end
+
 
 #endif /* Fraction_h */

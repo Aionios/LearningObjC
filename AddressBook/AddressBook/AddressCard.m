@@ -61,4 +61,17 @@
 {
     return [NSString stringWithFormat:@"!Name:%@, Email:%@!", name, email];
 }
+
+-(void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:name forKey:@"AddressCardName"];
+    [aCoder encodeObject:email forKey:@"AddressCardEmail"];
+}
+
+-(instancetype) initWithCoder:(NSCoder *)aDecoder
+{
+    name = [aDecoder decodeObjectForKey:@"AddressCardName"];
+    email = [aDecoder decodeObjectForKey:@"AddressCardEmail"];
+    return self;
+}
 @end
